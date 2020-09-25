@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(version: 2020_09_25_191506) do
     t.datetime "due_date"
     t.string "description"
     t.integer "user_id", null: false
-    t.integer "category_id", null: false
+    t.integer "survey_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_surveys_on_category_id"
+    t.index ["survey_category_id"], name: "index_surveys_on_survey_category_id"
     t.index ["user_id"], name: "index_surveys_on_user_id"
   end
 
@@ -74,6 +74,6 @@ ActiveRecord::Schema.define(version: 2020_09_25_191506) do
   add_foreign_key "questions", "surveys"
   add_foreign_key "responses", "questions"
   add_foreign_key "responses", "users"
-  add_foreign_key "surveys", "categories"
+  add_foreign_key "surveys", "survey_categories"
   add_foreign_key "surveys", "users"
 end
