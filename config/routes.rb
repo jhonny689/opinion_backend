@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :survey_categories
   resources :responses
   resources :questions
   resources :surveys
