@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2020_09_25_191506) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.integer "survey_id", null: false
-    t.integer "question_type_id", null: false
+    t.bigint "survey_id", null: false
+    t.bigint "question_type_id", null: false
     t.string "question_text"
     t.string "choices"
     t.datetime "created_at", precision: 6, null: false
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 2020_09_25_191506) do
   end
 
   create_table "responses", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "question_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "question_id", null: false
     t.string "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 2020_09_25_191506) do
     t.string "status"
     t.datetime "due_date"
     t.string "description"
-    t.integer "user_id", null: false
-    t.integer "survey_category_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "survey_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["survey_category_id"], name: "index_surveys_on_survey_category_id"
