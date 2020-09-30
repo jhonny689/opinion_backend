@@ -33,7 +33,12 @@ QuestionType.create(name: "Ranking", description: "Surveyee can rank the given o
 QuestionType.create(name: "Image Choice", description: "Surveyee choose one answer from a list of images.")
 QuestionType.create(name: "Slider", description: "Surveyee can rate an answer option on a numerical scale by dragging a slider.")
 
-Survey.create(title: "New Horror Flick", status: "published", due_date: DateTime.new(2020,9,30), description: "Horror movies people saw recently", user_id: User.first.id, survey_category_id: SurveyCategory.first.id )
+Survey.create(title: "New Horror Flick", status: "published", due_date: DateTime.new(2020,10,5), description: "Horror movies people saw recently", user_id: User.first.id, survey_category_id: SurveyCategory.first.id )
+Survey.create(title: "Female Rap", status: "published", due_date: DateTime.new(2020,10,3), description: "Popular rap songs by female artists", user_id: User.first.id, survey_category_id: SurveyCategory.second.id )
+Survey.create(title: "Cutest Celeb Couple", status: "draft", due_date: DateTime.new(2020,10,06), description: "Celeb couple who are darn too cute", user_id: User.first.id, survey_category_id: SurveyCategory.third.id )
+Survey.create(title: "Who's your Celeb Persona", status: "draft", due_date: DateTime.new(2020,10,05), description: "Find out who your celeb persona is", user_id: User.first.id, survey_category_id: SurveyCategory.third.id )
+Survey.create(title: "Your Current Book Addiction", status: "closed", due_date: DateTime.new(2020,9,25), description: "Tell us about the book you can't stop reading", user_id: User.first.id, survey_category_id: SurveyCategory.fourth.id )
+Survey.create(title: "Who's Your President?", status: "closed", due_date: DateTime.new(2020,9,15), description: "Who are you voting for this coming election", user_id: User.first.id, survey_category_id: SurveyCategory.fifth.id )
 
 Question.create(survey: Survey.first, question_type: QuestionType.all[6], question_text: "Title of a Horror film you saw recently")
 Question.create(survey: Survey.first, question_type: QuestionType.all[5], question_text: "How would you classify this horror film?", choices: "Slasher, Psychological Horror, Science Fiction Horror, Supernatural Horror, Zombie Film")
