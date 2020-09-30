@@ -47,7 +47,7 @@ admins = User.all.filter {|user| user.role == "admin"}.map {|admin| admin.id}
 
 # ---------------------------------- SAMPLE SURVEYS -----------------------------------------
 
-Survey.create(title: "New Horror Flick", status: "published", due_date: DateTime.new(2020,10,5), description: "Horror movies people saw recently", user_id: glen_coco.id, survey_category_id: SurveyCategory.first.id )
+Survey.create(title: "New Horror Flick", status: "published", due_date: DateTime.new(2020,10,5), description: "Horror movies people saw recently", user_id: jhonny.id, survey_category_id: SurveyCategory.first.id )
 Survey.create(title: "Kpop pop pop", status: "published", due_date: DateTime.new(2020,10,5), description: "Best Kpop Groups in Categories", user_id: glen_coco.id, survey_category_id: SurveyCategory.second.id )
 Survey.create(title: "Female Rap", status: "published", due_date: DateTime.new(2020,10,3), description: "Popular rap songs by female artists", user_id: roy.id, survey_category_id: SurveyCategory.second.id )
 Survey.create(title: "Celeb Couples", status: "draft", due_date: DateTime.new(2020,10,06), description: "Celeb couple who are darn too cute", user_id: roy.id, survey_category_id: SurveyCategory.third.id )
@@ -64,12 +64,12 @@ end
 Question.create(survey: Survey.first, question_type: QuestionType.all[6], question_text: "Title of a Horror film you saw recently")
 Question.create(survey: Survey.first, question_type: QuestionType.all[5], question_text: "How would you classify this horror film?", choices: "Slasher, Psychological Horror, Science Fiction Horror, Supernatural Horror, Zombie Film")
 Question.create(survey: Survey.first, question_type: QuestionType.first, question_text: "Where did you see this movie?", choices: "Movie Theatre, Drive-In Movie Theatre, Television, Online")
-Question.create(survey: Survey.first, question_type: QuestionType.second, question_text: "Did you enjoy this movie?")
+Question.create(survey: Survey.first, question_type: QuestionType.second, question_text: "Did you enjoy this movie?", choices: "Yes, No")
 Question.create(survey: Survey.first, question_type: QuestionType.third, question_text: "What did you enjoy about this movie? (select as many as you want)", choices: "Cinematography, Characters, Monster/Villain's Backstory, Trademark Murder Weapon, Element of Surprise, Appropriate Theme Music")
 Question.create(survey: Survey.first, question_type: QuestionType.all[7], question_text: "How would you rank the following: (1 being the best)", choices: "Cinematography, Characters, Monster/Villain's Backstory, Trademark Murder Weapon, Element of Surprise, Appropriate Theme Music")
 Question.create(survey: Survey.first, question_type: QuestionType.fourth, question_text: "How would you rate this movie?")
 Question.create(survey: Survey.first, question_type: QuestionType.all[9], question_text: "How would you rate the ending of this movie?")
-Question.create(survey: Survey.first, question_type: QuestionType.fifth, question_text: "Would you recommend this movie to your friends/family?")
+Question.create(survey: Survey.first, question_type: QuestionType.fifth, question_text: "Would you recommend this movie to your friends/family?", choices: "Strongly Disagree, Disagree, Neutral, Agree, Strongly Agree")
 
 #Kpop pop pop
 choices1 = []
@@ -95,4 +95,34 @@ Question.create(survey: Survey.second, question_type: QuestionType.third, questi
 choices6 = []
 4.times { choices6 << Faker::Kpop.solo }
 Question.create(survey: Survey.second, question_type: QuestionType.all[5], question_text: "Best solo artist", choices: choices6.join(', '))
+
+# ---------------------------------- RESPONSES -----------------------------------------
+
+surveyees = User.all.filter {|user| user.role == "surveyee"}
+
+surveyees.each do |surveyee|
+    Survey.first.questions.each do |question|
+        if question.question_type.name == "Open Ended"
+            value = ["Get Out", "Scary Stories", "It", "Annabelle"].sample
+        elsif question.question_type.name == "Multiple Answers"
+            choices = question.choices.split(', ')
+            value = choices.slice(0, rand(0..5)).to_json
+        elsif question.question_type.name == "Ranking"
+            choices = question.choices.split(', ')
+            choices = choices.shuffle
+            respHash = Hash.new 
+            choices.each_with_index { |item, index|
+                respHash[item] = index
+            }
+            value = respHash.to_json
+        elsif question.question_type.name == "Rating Scale"
+            value = rand(1..10).to_s
+        elsif question.question_type.name == "Slider" 
+            value = rand(1..100).to_s 
+        else 
+            value = question.choices.split(', ').sample
+        end
+        Response.create(user_id: surveyee.id, question_id: question.id, value: value)
+    end 
+end 
 
