@@ -8,7 +8,10 @@ class SurveysController < ApplicationController
         surveys = Survey.all
         
         if params[:status]
-            surveys = Survey.all.filter{|survey| survey.status == params[:status]}
+            surveys = surveys.filter{|survey| survey.status == params[:status]}
+        end
+        if params[:user]
+            surveys = surveys.filter{|survey| !survey.surveyees.uniq.include?(User.find(params[:user]))}
         end
         render json: SurveySerializer.new(surveys), except: [:questions, :created_at, :updated_at]
 
