@@ -16,4 +16,14 @@ class SurveysController < ApplicationController
         render json: SurveySerializer.new(surveys), except: [:questions, :created_at, :updated_at]
 
     end
+
+    def update
+        survey = Survey.find(params[:id])
+        if params["survey"]
+            params.permit!
+            survey.update(params[:survey])
+        end
+        render json: survey
+    end 
+
 end
