@@ -16,4 +16,15 @@ class SurveysController < ApplicationController
         render json: SurveySerializer.new(surveys), except: [:questions, :created_at, :updated_at]
 
     end
+
+    def create
+        params.permit!
+        byebug
+        survey = Survey.create({title: params[:title], status: params[:status], due_date: params[:due_date], user_id: params[:user_id], description: params[:description], survey_category_id: params[:survey_category_id]})
+        params[:questions].each do |question|
+            question[:survey_id] = survey.id
+            byebug
+            Question.create(question)
+        end
+    end
 end
