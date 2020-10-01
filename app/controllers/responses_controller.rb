@@ -1,7 +1,10 @@
 class ResponsesController < ApplicationController
     def index
         responses = Response.all 
-        render json: responses 
+        if params[:survey]
+            responses = Survey.find(params[:survey]).responses
+        end
+        render json: ResponseSerializer.new(responses)
     end 
 
     def create
