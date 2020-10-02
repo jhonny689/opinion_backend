@@ -12,6 +12,7 @@ class ResponsesController < ApplicationController
             params.permit!
             params["answers"].each{|ans| Response.create(ans)}
         end
+        render json: {response: "saved"}
 
     end
 end

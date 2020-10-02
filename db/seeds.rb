@@ -139,3 +139,12 @@ Question.create(survey: drag_race_survey, question_type: QuestionType.fourth, qu
 Question.create(survey: drag_race_survey, question_type: QuestionType.all[9], question_text: "How would you rate the REALNESS consistently brought on the show?")
 Question.create(survey: drag_race_survey, question_type: QuestionType.first, question_text: "If you can't love yourself, how the hell you gonna love anybody else?", choices: "Amen, I guess..., I don't know what that means, I'll get back to you on that")
 
+#-------------------------------------------- creating authentcations for users ---------------------------------------------
+
+Authentication.create(user_id: 1, username: "roi", password: "123")
+Authentication.create(user_id: 2, username: "admin", password: "123")
+Authentication.create(user_id: 3, username: "jhonny", password: "123")
+
+Authentication.create(user_id: 4, username: "user1", password: "123")
+
+
