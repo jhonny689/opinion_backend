@@ -126,3 +126,16 @@ surveyees.each do |surveyee|
     end 
 end 
 
+#--------------------------------------------RuPaul Survey ---------------------------------------------
+drag_race_survey = Survey.create(title: "Now Sissy That Walk", status: "published", due_date: DateTime.new(2020,10,5), description: "You aint gotta get ready if you stay ready", user_id: roy.id, survey_category_id: SurveyCategory.first.id )
+
+Question.create(survey: drag_race_survey, question_type: QuestionType.second, question_text: "Are you a fan of Rupaul's DragRace?", choices: "Yes, No")
+Question.create(survey: drag_race_survey, question_type: QuestionType.all[5], question_text: "What is your age?", choices: "17 or younger, 18-20, 21-29, 30-39, 40-49, 50-59, 60 or older")
+Question.create(survey: drag_race_survey, question_type: QuestionType.all[6], question_text: "What country do you live in?")
+Question.create(survey: drag_race_survey, question_type: QuestionType.third, question_text: "Please select all that apply:", choices: "I watch RuPaul’s Drag Race, I have been to Dragcon, I have used WOWPresents Plus, None of the above")
+Question.create(survey: drag_race_survey, question_type: QuestionType.third, question_text: "What are your favorite parts about Rupaul’s Drag Race?", choices: "I love the looks, Watching how the Queens make things, I love watching the behind the scenes footage, I find the drama most entertaining, Hearing the queen’s stories , It’s funny")
+Question.create(survey: drag_race_survey, question_type: QuestionType.all[7], question_text: "How would you rank these DragRace Winners?", choices: "Aquaria, Yvie Oddly, Sasha Velour, Bob the Drag Queen, Bianca Del Rio, Sharon Needles")
+Question.create(survey: drag_race_survey, question_type: QuestionType.fourth, question_text: "How would you rate Rupaul's looks on the show?")
+Question.create(survey: drag_race_survey, question_type: QuestionType.all[9], question_text: "How would you rate the REALNESS consistently brought on the show?")
+Question.create(survey: drag_race_survey, question_type: QuestionType.first, question_text: "If you can't love yourself, how the hell you gonna love anybody else?", choices: "Amen, I guess..., I don't know what that means, I'll get back to you on that")
+
