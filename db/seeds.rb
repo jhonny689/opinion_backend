@@ -48,7 +48,7 @@ admins = User.all.filter {|user| user.role == "admin"}.map {|admin| admin.id}
 # ---------------------------------- SAMPLE SURVEYS -----------------------------------------
 
 Survey.create(title: "New Horror Flick", status: "published", due_date: DateTime.new(2020,10,5), description: "Horror movies people saw recently", user_id: jhonny.id, survey_category_id: SurveyCategory.first.id )
-Survey.create(title: "Kpop pop pop", status: "published", due_date: DateTime.new(2020,10,5), description: "Best Kpop Groups in Categories", user_id: glen_coco.id, survey_category_id: SurveyCategory.second.id )
+Survey.create(title: "Kpop pop pop", status: "draft", due_date: DateTime.new(2020,10,5), description: "Best Kpop Groups in Categories", user_id: jhonny.id, survey_category_id: SurveyCategory.second.id )
 Survey.create(title: "Female Rap", status: "published", due_date: DateTime.new(2020,10,3), description: "Popular rap songs by female artists", user_id: roy.id, survey_category_id: SurveyCategory.second.id )
 Survey.create(title: "Celeb Couples", status: "draft", due_date: DateTime.new(2020,10,06), description: "Celeb couple who are darn too cute", user_id: roy.id, survey_category_id: SurveyCategory.third.id )
 Survey.create(title: "Who's your Celeb Persona", status: "draft", due_date: DateTime.new(2020,10,05), description: "Find out who your celeb persona is", user_id: jhonny.id, survey_category_id: SurveyCategory.third.id )
