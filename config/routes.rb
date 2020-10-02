@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :authentications, only: [:create]
   resources :survey_categories
   resources :responses
   resources :questions
